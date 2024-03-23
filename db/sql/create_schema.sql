@@ -75,3 +75,4 @@ CREATE TABLE ticket
     CONSTRAINT fk_fly_t FOREIGN KEY ( fly_id ) REFERENCES fly ( "id" ) ON DELETE NO ACTION,
     CONSTRAINT fk_tour_t FOREIGN KEY ( tour_id ) REFERENCES tour ( "id" ) ON DELETE CASCADE
 );
+

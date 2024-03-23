@@ -2,10 +2,7 @@ package com.seminario194.Despegando.domain.entities;
 
 import com.seminario194.Despegando.util.Airlines;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -29,6 +26,9 @@ public class FlyEntity implements Serializable {
     private String destinyName;
     @Enumerated(EnumType.STRING)
     private Airlines aeroLine;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
