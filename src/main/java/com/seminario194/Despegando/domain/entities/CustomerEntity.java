@@ -1,5 +1,6 @@
 package com.seminario194.Despegando.domain.entities;
 
+import com.seminario194.Despegando.api.dtos.CustomerResponse;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Builder
-public class CustomerEntity {
+public class CustomerEntity{
     @Id
     private String dni;
     @Column(length = 50)

@@ -1,14 +1,19 @@
 package com.seminario194.Despegando.api.controllers;
 
+import com.seminario194.Despegando.api.dtos.CustomerRequest;
+import com.seminario194.Despegando.api.dtos.CustomersResponse;
+import com.seminario194.Despegando.api.services.CustomerService;
 import com.seminario194.Despegando.domain.entities.CustomerEntity;
 import com.seminario194.Despegando.domain.repositories.CustomerRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -16,21 +21,18 @@ import java.util.List;
 @RequestMapping("/api/customer")
 public class CustomerController {
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     @GetMapping
-    public List<CustomerEntity> getCustomers(){
-        return customerRepository.findAll();
+    @ResponseBody
+    public CustomersResponse listCustomers(){
+        return customerService.listCustomers();
     }
 
-    @GetMapping("{dni}")
-    public ResponseEntity<CustomerEntity> getCustomer (@PathVariable String dni){
-        CustomerEntity customer = customerRepository.findById(dni).orElse(null);
-
-        if(customer == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(customer);
+    @PostMapping("/newCustomer")
+    public ResponseEntity newCustomer(@RequestBody CustomerRequest customerRequest){
+        return customerService.setCustomer(customerRequest);
     }
+
+
 }
