@@ -6,4 +6,6 @@ Proyecto final Seminario de Programación.
 
 #Dockerizado
 
+#Controladores para testeo en Postman añadidos, para testear, ejecutar la imagen de docker y correr la aplicacion.
+
 #Proximamente: Kubernetes y ejecucion en AWS o servicio de cloud computing similar.
